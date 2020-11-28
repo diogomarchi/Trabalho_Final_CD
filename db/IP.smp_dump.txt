@@ -1,0 +1,7 @@
+
+State Machine - |anxi4|r_STATE
+Name r_STATE.s_3 r_STATE.s_2 r_STATE.s_1 r_STATE.s_0 
+r_STATE.s_0 0 0 0 0 
+r_STATE.s_1 0 0 1 1 
+r_STATE.s_2 0 1 0 1 
+r_STATE.s_3 1 0 0 1 

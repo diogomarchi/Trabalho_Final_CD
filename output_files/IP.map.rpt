@@ -1,5 +1,5 @@
 Analysis & Synthesis report for IP
-Fri Nov 27 18:54:01 2020
+Fri Nov 27 21:49:27 2020
 Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
 
 
@@ -10,7 +10,15 @@ Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
   2. Analysis & Synthesis Summary
   3. Analysis & Synthesis Settings
   4. Parallel Compilation
-  5. Analysis & Synthesis Messages
+  5. Analysis & Synthesis Source Files Read
+  6. Analysis & Synthesis Resource Usage Summary
+  7. Analysis & Synthesis Resource Utilization by Entity
+  8. State Machine - |anxi4|r_STATE
+  9. User-Specified and Inferred Latches
+ 10. General Register Statistics
+ 11. Post-Synthesis Netlist Statistics for Top Partition
+ 12. Elapsed Time Per Partition
+ 13. Analysis & Synthesis Messages
 
 
 
@@ -34,22 +42,27 @@ https://fpgasoftware.intel.com/eula.
 
 
 
-+---------------------------------------------------------------------------+
-; Analysis & Synthesis Summary                                              ;
-+-----------------------------+---------------------------------------------+
-; Analysis & Synthesis Status ; Failed - Fri Nov 27 18:54:01 2020           ;
-; Quartus Prime Version       ; 20.1.1 Build 720 11/11/2020 SJ Lite Edition ;
-; Revision Name               ; IP                                          ;
-; Top-level Entity Name       ; ANXI4                                       ;
-; Family                      ; Cyclone V                                   ;
-; Logic utilization (in ALMs) ; N/A until Partition Merge                   ;
-; Total registers             ; N/A until Partition Merge                   ;
-; Total pins                  ; N/A until Partition Merge                   ;
-; Total virtual pins          ; N/A until Partition Merge                   ;
-; Total block memory bits     ; N/A until Partition Merge                   ;
-; Total PLLs                  ; N/A until Partition Merge                   ;
-; Total DLLs                  ; N/A until Partition Merge                   ;
-+-----------------------------+---------------------------------------------+
++-------------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                                  ;
++---------------------------------+---------------------------------------------+
+; Analysis & Synthesis Status     ; Successful - Fri Nov 27 21:49:27 2020       ;
+; Quartus Prime Version           ; 20.1.1 Build 720 11/11/2020 SJ Lite Edition ;
+; Revision Name                   ; IP                                          ;
+; Top-level Entity Name           ; anxi4                                       ;
+; Family                          ; Cyclone V                                   ;
+; Logic utilization (in ALMs)     ; N/A                                         ;
+; Total registers                 ; 4                                           ;
+; Total pins                      ; 23                                          ;
+; Total virtual pins              ; 0                                           ;
+; Total block memory bits         ; 0                                           ;
+; Total DSP Blocks                ; 0                                           ;
+; Total HSSI RX PCSs              ; 0                                           ;
+; Total HSSI PMA RX Deserializers ; 0                                           ;
+; Total HSSI TX PCSs              ; 0                                           ;
+; Total HSSI PMA TX Serializers   ; 0                                           ;
+; Total PLLs                      ; 0                                           ;
+; Total DLLs                      ; 0                                           ;
++---------------------------------+---------------------------------------------+
 
 
 +---------------------------------------------------------------------------------------------------------------------------+
@@ -148,11 +161,135 @@ https://fpgasoftware.intel.com/eula.
 ; Maximum allowed            ; 2           ;
 ;                            ;             ;
 ; Average used               ; 1.00        ;
-; Maximum used               ; 1           ;
+; Maximum used               ; 2           ;
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
+;     Processor 2            ;   0.0%      ;
 +----------------------------+-------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                         ;
++----------------------------------+-----------------+-----------------+-------------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type       ; File Name with Absolute Path                                                  ; Library ;
++----------------------------------+-----------------+-----------------+-------------------------------------------------------------------------------+---------+
+; ANXI4.vhd                        ; yes             ; User VHDL File  ; C:/Users/DiogoMarchi/Documents/FACULDADE-MATERIAS/Trabalho_Final_CD/ANXI4.vhd ;         ;
++----------------------------------+-----------------+-----------------+-------------------------------------------------------------------------------+---------+
+
+
++---------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary             ;
++---------------------------------------------+-----------+
+; Resource                                    ; Usage     ;
++---------------------------------------------+-----------+
+; Estimate of Logic utilization (ALMs needed) ; 9         ;
+;                                             ;           ;
+; Combinational ALUT usage for logic          ; 18        ;
+;     -- 7 input functions                    ; 0         ;
+;     -- 6 input functions                    ; 0         ;
+;     -- 5 input functions                    ; 1         ;
+;     -- 4 input functions                    ; 0         ;
+;     -- <=3 input functions                  ; 17        ;
+;                                             ;           ;
+; Dedicated logic registers                   ; 4         ;
+;                                             ;           ;
+; I/O pins                                    ; 23        ;
+;                                             ;           ;
+; Total DSP Blocks                            ; 0         ;
+;                                             ;           ;
+; Maximum fan-out node                        ; o_TDATA~0 ;
+; Maximum fan-out                             ; 8         ;
+; Total fan-out                               ; 96        ;
+; Average fan-out                             ; 1.41      ;
++---------------------------------------------+-----------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                    ;
++----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+---------------------+-------------+--------------+
+; Compilation Hierarchy Node ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name ; Entity Name ; Library Name ;
++----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+---------------------+-------------+--------------+
+; |anxi4                     ; 18 (18)             ; 4 (4)                     ; 0                 ; 0          ; 23   ; 0            ; |anxi4              ; anxi4       ; work         ;
++----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+---------------------+-------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
+Encoding Type:  One-Hot
++---------------------------------------------------------------------+
+; State Machine - |anxi4|r_STATE                                      ;
++-------------+-------------+-------------+-------------+-------------+
+; Name        ; r_STATE.s_3 ; r_STATE.s_2 ; r_STATE.s_1 ; r_STATE.s_0 ;
++-------------+-------------+-------------+-------------+-------------+
+; r_STATE.s_0 ; 0           ; 0           ; 0           ; 0           ;
+; r_STATE.s_1 ; 0           ; 0           ; 1           ; 1           ;
+; r_STATE.s_2 ; 0           ; 1           ; 0           ; 1           ;
+; r_STATE.s_3 ; 1           ; 0           ; 0           ; 1           ;
++-------------+-------------+-------------+-------------+-------------+
+
+
++----------------------------------------------------------------------------------------------------+
+; User-Specified and Inferred Latches                                                                ;
++-----------------------------------------------------+---------------------+------------------------+
+; Latch Name                                          ; Latch Enable Signal ; Free of Timing Hazards ;
++-----------------------------------------------------+---------------------+------------------------+
+; o_TVALID$latch                                      ; Selector3           ; yes                    ;
+; o_TLAST$latch                                       ; o_TLAST             ; yes                    ;
+; o_TDATA[0]$latch                                    ; o_TDATA             ; yes                    ;
+; o_TDATA[1]$latch                                    ; o_TDATA             ; yes                    ;
+; o_TDATA[2]$latch                                    ; o_TDATA             ; yes                    ;
+; o_TDATA[3]$latch                                    ; o_TDATA             ; yes                    ;
+; o_TDATA[4]$latch                                    ; o_TDATA             ; yes                    ;
+; o_TDATA[5]$latch                                    ; o_TDATA             ; yes                    ;
+; o_TDATA[6]$latch                                    ; o_TDATA             ; yes                    ;
+; o_TDATA[7]$latch                                    ; o_TDATA             ; yes                    ;
+; Number of user-specified and inferred latches = 10  ;                     ;                        ;
++-----------------------------------------------------+---------------------+------------------------+
+Note: All latches listed above may not be present at the end of synthesis due to various synthesis optimizations.
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 4     ;
+; Number of registers using Synchronous Clear  ; 0     ;
+; Number of registers using Synchronous Load   ; 0     ;
+; Number of registers using Asynchronous Clear ; 4     ;
+; Number of registers using Asynchronous Load  ; 0     ;
+; Number of registers using Clock Enable       ; 0     ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++-----------------------------------------------------+
+; Post-Synthesis Netlist Statistics for Top Partition ;
++-----------------------+-----------------------------+
+; Type                  ; Count                       ;
++-----------------------+-----------------------------+
+; arriav_ff             ; 4                           ;
+;     CLR               ; 4                           ;
+; arriav_lcell_comb     ; 19                          ;
+;     normal            ; 19                          ;
+;         0 data inputs ; 1                           ;
+;         2 data inputs ; 5                           ;
+;         3 data inputs ; 12                          ;
+;         5 data inputs ; 1                           ;
+; boundary_port         ; 23                          ;
+;                       ;                             ;
+; Max LUT depth         ; 2.00                        ;
+; Average LUT depth     ; 1.33                        ;
++-----------------------+-----------------------------+
+
+
++-------------------------------+
+; Elapsed Time Per Partition    ;
++----------------+--------------+
+; Partition Name ; Elapsed Time ;
++----------------+--------------+
+; Top            ; 00:00:00     ;
++----------------+--------------+
 
 
 +-------------------------------+
@@ -161,18 +298,45 @@ https://fpgasoftware.intel.com/eula.
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
-    Info: Processing started: Fri Nov 27 18:53:48 2020
+    Info: Processing started: Fri Nov 27 21:49:08 2020
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off IP -c IP
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 2 of the 2 processors detected
 Info (12021): Found 2 design units, including 1 entities, in source file anxi4.vhd
-    Info (12022): Found design unit 1: axi4-arch_1 File: C:/Users/DiogoMarchi/Documents/FACULDADE-MATERIAS/Trabalho_Final_CD/ANXI4.vhd Line: 28
-    Info (12023): Found entity 1: axi4 File: C:/Users/DiogoMarchi/Documents/FACULDADE-MATERIAS/Trabalho_Final_CD/ANXI4.vhd Line: 14
-Error (12007): Top-level design entity "ANXI4" is undefined
-Error: Quartus Prime Analysis & Synthesis was unsuccessful. 1 error, 1 warning
-    Error: Peak virtual memory: 760 megabytes
-    Error: Processing ended: Fri Nov 27 18:54:01 2020
-    Error: Elapsed time: 00:00:13
-    Error: Total CPU time (on all processors): 00:00:31
+    Info (12022): Found design unit 1: anxi4-arch_1 File: C:/Users/DiogoMarchi/Documents/FACULDADE-MATERIAS/Trabalho_Final_CD/ANXI4.vhd Line: 27
+    Info (12023): Found entity 1: anxi4 File: C:/Users/DiogoMarchi/Documents/FACULDADE-MATERIAS/Trabalho_Final_CD/ANXI4.vhd Line: 14
+Info (12127): Elaborating entity "ANXI4" for the top level hierarchy
+Warning (10541): VHDL Signal Declaration warning at ANXI4.vhd(20): used implicit default value for signal "o_CLK" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: C:/Users/DiogoMarchi/Documents/FACULDADE-MATERIAS/Trabalho_Final_CD/ANXI4.vhd Line: 20
+Warning (10492): VHDL Process Statement warning at ANXI4.vhd(62): signal "i_BUFFER" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/DiogoMarchi/Documents/FACULDADE-MATERIAS/Trabalho_Final_CD/ANXI4.vhd Line: 62
+Warning (10492): VHDL Process Statement warning at ANXI4.vhd(69): signal "i_BUFFER" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/DiogoMarchi/Documents/FACULDADE-MATERIAS/Trabalho_Final_CD/ANXI4.vhd Line: 69
+Warning (10631): VHDL Process Statement warning at ANXI4.vhd(45): inferring latch(es) for signal or variable "o_TLAST", which holds its previous value in one or more paths through the process File: C:/Users/DiogoMarchi/Documents/FACULDADE-MATERIAS/Trabalho_Final_CD/ANXI4.vhd Line: 45
+Warning (10631): VHDL Process Statement warning at ANXI4.vhd(45): inferring latch(es) for signal or variable "o_TVALID", which holds its previous value in one or more paths through the process File: C:/Users/DiogoMarchi/Documents/FACULDADE-MATERIAS/Trabalho_Final_CD/ANXI4.vhd Line: 45
+Warning (10631): VHDL Process Statement warning at ANXI4.vhd(45): inferring latch(es) for signal or variable "o_TDATA", which holds its previous value in one or more paths through the process File: C:/Users/DiogoMarchi/Documents/FACULDADE-MATERIAS/Trabalho_Final_CD/ANXI4.vhd Line: 45
+Info (10041): Inferred latch for "o_TDATA[0]" at ANXI4.vhd(45) File: C:/Users/DiogoMarchi/Documents/FACULDADE-MATERIAS/Trabalho_Final_CD/ANXI4.vhd Line: 45
+Info (10041): Inferred latch for "o_TDATA[1]" at ANXI4.vhd(45) File: C:/Users/DiogoMarchi/Documents/FACULDADE-MATERIAS/Trabalho_Final_CD/ANXI4.vhd Line: 45
+Info (10041): Inferred latch for "o_TDATA[2]" at ANXI4.vhd(45) File: C:/Users/DiogoMarchi/Documents/FACULDADE-MATERIAS/Trabalho_Final_CD/ANXI4.vhd Line: 45
+Info (10041): Inferred latch for "o_TDATA[3]" at ANXI4.vhd(45) File: C:/Users/DiogoMarchi/Documents/FACULDADE-MATERIAS/Trabalho_Final_CD/ANXI4.vhd Line: 45
+Info (10041): Inferred latch for "o_TDATA[4]" at ANXI4.vhd(45) File: C:/Users/DiogoMarchi/Documents/FACULDADE-MATERIAS/Trabalho_Final_CD/ANXI4.vhd Line: 45
+Info (10041): Inferred latch for "o_TDATA[5]" at ANXI4.vhd(45) File: C:/Users/DiogoMarchi/Documents/FACULDADE-MATERIAS/Trabalho_Final_CD/ANXI4.vhd Line: 45
+Info (10041): Inferred latch for "o_TDATA[6]" at ANXI4.vhd(45) File: C:/Users/DiogoMarchi/Documents/FACULDADE-MATERIAS/Trabalho_Final_CD/ANXI4.vhd Line: 45
+Info (10041): Inferred latch for "o_TDATA[7]" at ANXI4.vhd(45) File: C:/Users/DiogoMarchi/Documents/FACULDADE-MATERIAS/Trabalho_Final_CD/ANXI4.vhd Line: 45
+Info (10041): Inferred latch for "o_TVALID" at ANXI4.vhd(45) File: C:/Users/DiogoMarchi/Documents/FACULDADE-MATERIAS/Trabalho_Final_CD/ANXI4.vhd Line: 45
+Info (10041): Inferred latch for "o_TLAST" at ANXI4.vhd(45) File: C:/Users/DiogoMarchi/Documents/FACULDADE-MATERIAS/Trabalho_Final_CD/ANXI4.vhd Line: 45
+Warning (13012): Latch o_TVALID$latch has unsafe behavior File: C:/Users/DiogoMarchi/Documents/FACULDADE-MATERIAS/Trabalho_Final_CD/ANXI4.vhd Line: 45
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal i_VALID File: C:/Users/DiogoMarchi/Documents/FACULDADE-MATERIAS/Trabalho_Final_CD/ANXI4.vhd Line: 17
+Warning (13024): Output pins are stuck at VCC or GND
+    Warning (13410): Pin "o_CLK" is stuck at GND File: C:/Users/DiogoMarchi/Documents/FACULDADE-MATERIAS/Trabalho_Final_CD/ANXI4.vhd Line: 20
+Info (286030): Timing-Driven Synthesis is running
+Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
+    Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
+Info (21057): Implemented 41 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 12 input pins
+    Info (21059): Implemented 11 output pins
+    Info (21061): Implemented 18 logic cells
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 11 warnings
+    Info: Peak virtual memory: 767 megabytes
+    Info: Processing ended: Fri Nov 27 21:49:27 2020
+    Info: Elapsed time: 00:00:19
+    Info: Total CPU time (on all processors): 00:00:39
 
 

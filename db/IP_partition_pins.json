@@ -1,0 +1,97 @@
+{
+	"partitions" : [
+		{
+			"name" : "Top",
+			"pins" : [
+				{
+					"name" : "o_TVALID",
+					"strict" : false
+				},
+				{
+					"name" : "o_TLAST",
+					"strict" : false
+				},
+				{
+					"name" : "o_TDATA[0]",
+					"strict" : false
+				},
+				{
+					"name" : "o_TDATA[1]",
+					"strict" : false
+				},
+				{
+					"name" : "o_TDATA[2]",
+					"strict" : false
+				},
+				{
+					"name" : "o_TDATA[3]",
+					"strict" : false
+				},
+				{
+					"name" : "o_TDATA[4]",
+					"strict" : false
+				},
+				{
+					"name" : "o_TDATA[5]",
+					"strict" : false
+				},
+				{
+					"name" : "o_TDATA[6]",
+					"strict" : false
+				},
+				{
+					"name" : "o_TDATA[7]",
+					"strict" : false
+				},
+				{
+					"name" : "i_VALID",
+					"strict" : false
+				},
+				{
+					"name" : "i_BUFFER[0]",
+					"strict" : false
+				},
+				{
+					"name" : "i_BUFFER[1]",
+					"strict" : false
+				},
+				{
+					"name" : "i_BUFFER[2]",
+					"strict" : false
+				},
+				{
+					"name" : "i_BUFFER[3]",
+					"strict" : false
+				},
+				{
+					"name" : "i_BUFFER[4]",
+					"strict" : false
+				},
+				{
+					"name" : "i_BUFFER[5]",
+					"strict" : false
+				},
+				{
+					"name" : "i_BUFFER[6]",
+					"strict" : false
+				},
+				{
+					"name" : "i_BUFFER[7]",
+					"strict" : false
+				},
+				{
+					"name" : "i_CLK",
+					"strict" : false
+				},
+				{
+					"name" : "i_CLR_n",
+					"strict" : false
+				},
+				{
+					"name" : "i_READY",
+					"strict" : false
+				}
+			]
+		}
+	]
+}

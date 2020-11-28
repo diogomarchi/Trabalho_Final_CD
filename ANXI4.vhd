@@ -11,23 +11,22 @@ use ieee.std_logic_1164.all;
 use ieee.STD_LOGIC_UNSIGNED.all;
 
 
-entity axi4 is
+entity anxi4 is
 port ( i_CLR_n  : in  std_logic;  -- clear/reset
        i_CLK    : in  std_logic;  -- clock
 		 i_VALID  : in  std_logic;  -- enable
        i_READY  : in  std_logic;  -- enable    
        i_BUFFER : in  std_logic_vector(7 downto 0);  -- data input
-		 i_TLAST  : in  std_logic;  -- de last bit
 		 o_CLK    : out std_logic;  -- clock 
 		 o_TVALID : out std_logic;  -- enable
        o_TLAST  : out std_logic;  -- de last bit
 		 o_TDATA  : out std_logic_vector(7 downto 0)); -- data output
-end axi4;
+end anxi4;
 
 
-architecture arch_1 of axi4 is
+architecture arch_1 of anxi4 is
 
-  type t_STATE is (s_0, s_1, s_2, s_3,s_4, s_5, s_6, s_7);
+  type t_STATE is (s_0, s_1, s_2, s_3);
   signal r_STATE: t_STATE;		 -- state register
   signal w_NEXT : t_STATE; 		 -- next state
 
@@ -55,18 +54,17 @@ begin
                     w_NEXT <= s_0;
                   end if; 
       when s_1 => if(i_READY = '1') then
-		              o_TVALID <= '0';
     			        w_NEXT   <= s_2;
                   else
                     w_NEXT   <= s_1;
                   end if;
 						
       when s_2 => o_TDATA  <= i_BUFFER;
-		            if(i_TLAST = '1') then
+		            if(i_VALID = '0') then
     			        w_NEXT <= s_3;
                   else
 						  o_TVALID <= '1';
-                    w_NEXT <= s_2;
+                    w_NEXT <= s_1;
                   end if;
       when s_3 => o_TDATA  <= i_BUFFER;
 		            o_TLAST  <= '1';
