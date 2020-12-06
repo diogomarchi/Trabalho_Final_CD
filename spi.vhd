@@ -55,7 +55,7 @@ end component;
 
 
 signal w_HLOAD, w_CNTRUP, w_CNTRCLR : std_logic;
-signal w_REG_EDC, w_MUX_EDC : std_logic_vector (11 downto 0);
+signal w_o_HAMMING, w_REG_EDC : std_logic_vector (11 downto 0);
 signal w_SEL : std_logic_vector (3 downto 0);
 begin
 
@@ -72,15 +72,15 @@ begin
 
 
 		u_Hamming : hamming port map(i_A => i_TDATA,
-                                     o_S => w_REG_EDC);
+                                     o_S => w_o_HAMMING);
                                      
 		u_Reg : registrador_12bit port map(i_load => w_HLOAD,
                                            i_clk  => i_CLK,
-                                           i_I    => w_REG_EDC,
-                                           o_Q    => w_MUX_EDC);
+                                           i_I    => w_o_HAMMING,
+                                           o_Q    => w_REG_EDC);
                                                
 		u_Mux : mux12_1bit port map(i_SEL => w_SEL,
-                                    i_A   => w_MUX_EDC,
+                                    i_A   => w_REG_EDC,
                                     o_S   => o_MOSI);
 											  
 		u_Counter : counter port map(i_clr => w_CNTRCLR,

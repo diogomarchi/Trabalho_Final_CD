@@ -57,6 +57,6 @@ begin
     o_HLOAD <= '1' when (r_STATE = s_1) else '0';
     o_TREADY <= '1' when (r_STATE = s_0) else '0';
     o_SS_n <= '1' when (r_STATE = s_0) or (r_STATE = s_1) else '0';
-	 o_SCK <= i_CLK when( r_STATE = s_2) else '1';
+	 o_SCK <= not i_CLK when( r_STATE = s_2) else '1';
     
 end arch_1;

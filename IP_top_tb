@@ -1,0 +1,89 @@
+-- IP_top_tb.vhd
+
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+
+entity IP_top_tb is
+-- empty
+end IP_top_tb;
+
+
+architecture arch_1 of IP_top_tb is
+
+component IP_top is
+port ( i_CLR_n  : in  std_logic;  -- clear/reset
+       i_CLK    : in  std_logic;  -- clock
+       i_VALID  : in  std_logic;  -- enable 
+       i_BUFFER : in  std_logic_vector(7 downto 0);  -- data input 
+       o_MOSI   : out std_logic;   -- data output
+       o_SCK    : out std_logic;   -- data output
+       o_TLAST  : out std_logic;   -- data output
+       o_SS_n   : out std_logic);  -- data output
+end component;
+
+  signal w_CLR_n, w_CLK, w_VALID: std_logic; 
+  signal w_BUFFER: std_logic_vector(7 downto 0);
+  signal w_MOSI, w_SCK, w_TLAST, w_SS_n: std_logic;
+	
+  constant c_CLK_PERIOD : time := 2 ns; -- clock period
+
+begin
+
+  u_IP : IP_top port map( 
+    i_CLR_n  => w_CLR_n,
+    i_CLK    => w_CLK,
+    i_VALID  => w_VALID,
+    i_BUFFER => w_BUFFER,
+    o_MOSI   => w_MOSI,
+    o_SCK    => w_SCK,
+    o_TLAST  => w_TLAST,
+    o_SS_n   => w_SS_n );
+
+  p_CLK: process
+  begin
+    w_CLK <= '1';
+    wait for c_CLK_PERIOD/2;  
+    w_CLK <= '0';
+    wait for c_CLK_PERIOD/2;  
+  end process p_CLK;
+
+  p_CLR_n: process
+  begin
+    w_CLR_n <= '1';
+    wait for c_CLK_PERIOD;  
+    w_CLR_n <= '0';
+    wait for c_CLK_PERIOD;  
+    w_CLR_n <= '1';
+    wait; -- for the end of simulation
+  end process p_CLR_n;
+
+  p_IP: process
+  begin
+    -- zera entradas
+    w_VALID <= '0';
+    w_BUFFER <= "00000000";
+    
+    -- aguarda process reset
+    wait  for 4*c_CLK_PERIOD; 
+
+    -- adiciona valor ao buffer e ativa sinal valid
+    w_VALID <= '1';
+    w_BUFFER <= "11110000";
+    
+    -- aguarda um ciclo de clock
+    wait for c_CLK_PERIOD;
+    
+    -- zera valid e atribui valor indefinido ao buffer 
+    w_VALID <= '0';
+    w_BUFFER <= "UUUUUUUU";
+    
+    -- aguarda o envio dos dados pelo SPI
+    wait  for 20*c_CLK_PERIOD;
+    
+    assert false report "Test done." severity note;
+    wait;
+  end process p_IP;
+
+end arch_1;
