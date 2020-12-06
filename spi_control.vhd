@@ -5,7 +5,6 @@ entity spi_control is
 port ( i_CLR_n 	  : in  std_logic;   -- selector
        i_CLK  	  : in  std_logic;   -- data input
        i_TVALID   : in  std_logic;    -- data input
-       i_CNTRLAST : in  std_logic;
        i_CNTR	  : in  std_logic_vector (3 downto 0);
        o_CNTRCLR  : out std_logic;
        o_CNTRUP   : out std_logic;
@@ -30,7 +29,7 @@ begin
       end if;
 	end process;
     
-    p_NEXT: process(r_STATE, i_TVALID, i_CNTRLAST, i_CNTR)
+    p_NEXT: process(r_STATE, i_TVALID, i_CNTR)
     begin
       case (r_STATE) is
       	when s_0 => if (i_TVALID = '1') then

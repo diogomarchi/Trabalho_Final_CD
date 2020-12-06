@@ -10,15 +10,15 @@ end registrador_12bit;
 
 
 architecture arch_1 of registrador_12bit is
+signal r_DATA : std_logic_vector (11 downto 0);
 begin
   process(i_load, i_clk, i_I)
   begin
     if (rising_edge(i_CLK)) then
       if (i_load='1') then
-      	o_Q <= i_I;
-      else
-      	o_Q <= o_Q;
+      	r_DATA <= i_I;
       end if;
     end if;
   end process;
+  o_Q <= r_DATA;
 end arch_1;

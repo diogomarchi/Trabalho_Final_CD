@@ -18,7 +18,6 @@ component spi_control is
 port ( i_CLR_n 	  : in  std_logic;   -- selector
        i_CLK  	  : in  std_logic;   -- data input
        i_TVALID   : in  std_logic;    -- data input
-       i_CNTRLAST : in  std_logic;
        i_CNTR	  : in  std_logic_vector (3 downto 0);
        o_CNTRCLR  : out std_logic;
        o_CNTRUP   : out std_logic;
@@ -49,12 +48,11 @@ component counter is
 port ( i_clr  	  : in  std_logic;  -- selector
        i_clk      : in  std_logic; -- data input
        i_up		  : in  std_logic; -- data input
-       o_CNTRLAST : out std_logic;
        o_S		  : out std_logic_vector (3 downto 0));
 end component;
 
 
-signal w_HLOAD, w_CNTRLAST, w_CNTRUP, w_CNTRCLR : std_logic;
+signal w_HLOAD, w_CNTRUP, w_CNTRCLR : std_logic;
 signal w_REG_EDC, w_MUX_EDC : std_logic_vector (11 downto 0);
 signal w_SEL : std_logic_vector (3 downto 0);
 begin
@@ -62,7 +60,6 @@ begin
 		u_Control : spi_control port map( i_CLR_n => i_CLR_n,
                                           i_CLK => i_CLK,  
                                           i_TVALID => i_TVALID,
-                                          i_CNTRLAST => w_CNTRLAST,
                                           i_CNTR => w_SEL,
                                           o_CNTRCLR  => w_CNTRCLR,
                                           o_CNTRUP => w_CNTRUP,
@@ -86,7 +83,6 @@ begin
 		u_Counter : counter port map(i_clr => w_CNTRCLR,
                                      i_clk   => i_CLK,
                                      i_up   => w_CNTRUP,
-                                     o_CNTRLAST => w_CNTRLAST,
                                      o_S    => w_SEL);
 
 end arch_1;
