@@ -3,12 +3,13 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
 entity spi is
-port ( i_CLR_n 	 : in  std_logic;   -- selector
-       i_CLK  	 : in  std_logic;   -- data input
+port ( i_CLR_n   : in  std_logic;   -- selector
+       i_CLK  	  : in  std_logic;   -- data input
        i_TVALID  : in  std_logic;    -- data input
        i_TDATA   : in  std_logic_vector (7 downto 0);
        o_TREADY  : out std_logic;   -- data output
        o_MOSI    : out std_logic;   -- data output
+		 o_SCK     : out std_logic;   -- data output
        o_SS_n    : out std_logic);  -- data output
 end spi;
 
@@ -19,6 +20,7 @@ port ( i_CLR_n 	  : in  std_logic;   -- selector
        i_CLK  	  : in  std_logic;   -- data input
        i_TVALID   : in  std_logic;    -- data input
        i_CNTR	  : in  std_logic_vector (3 downto 0);
+		 o_SCK     : out std_logic;   -- data output
        o_CNTRCLR  : out std_logic;
        o_CNTRUP   : out std_logic;
        o_HLOAD    : out std_logic;   -- load hamming register
@@ -61,6 +63,7 @@ begin
                                           i_CLK => i_CLK,  
                                           i_TVALID => i_TVALID,
                                           i_CNTR => w_SEL,
+														o_SCK  => o_SCK,
                                           o_CNTRCLR  => w_CNTRCLR,
                                           o_CNTRUP => w_CNTRUP,
                                           o_HLOAD => w_HLOAD, 
