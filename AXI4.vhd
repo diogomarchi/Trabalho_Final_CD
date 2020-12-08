@@ -17,8 +17,7 @@ entity AXI4 is
     i_READY  : in std_logic; -- enable 
     i_BUFFER : in std_logic_vector(7 downto 0); -- data input
     o_TVALID : out std_logic; -- enable
-    o_TLAST  : out std_logic; -- de last bit
-  o_TDATA  : out std_logic_vector(7 downto 0)); -- data output
+    o_TDATA  : out std_logic_vector(7 downto 0)); -- data output
 end AXI4;
 
 architecture arch_1 of AXI4 is
@@ -26,8 +25,7 @@ architecture arch_1 of AXI4 is
   type t_STATE is (s_0, s_1, s_2, s_3);
   signal r_STATE                        : t_STATE; -- state register
   signal w_NEXT                         : t_STATE; -- next state
-  signal r_i_VALID                      : std_logic; -- sincronismo
-  signal r_BUFFER, r_BUFFER1, r_BUFFER2 : std_logic_vector(7 downto 0); -- sincronismo
+  signal r_BUFFER, r_BUFFER1 : std_logic_vector(7 downto 0); -- sincronismo
 
  
 begin
@@ -35,25 +33,21 @@ begin
   begin
     if (i_CLR_n = '0') then
       r_STATE   <= s_0; --initial state
-      r_i_VALID <= '0';
       r_BUFFER  <= "00000000";
       r_BUFFER1 <= "00000000";
-      r_BUFFER2 <= "00000000";
  
     elsif (rising_edge(i_CLK)) then 
       r_STATE   <= w_NEXT; --next state
-      r_i_VALID <= i_VALID;
       r_BUFFER  <= i_BUFFER;
-      r_BUFFER1 <= r_BUFFER;
-      r_BUFFER2 <= r_BUFFER1;
+      r_BUFFER1 <= r_BUFFER;      
     end if;
   end process;
 
-  p_NEXT : process (r_STATE, r_i_VALID, i_READY)
+  p_NEXT : process (r_STATE, i_VALID, i_READY)
   begin
     case (r_STATE) is
       when s_0 => 
-        if (r_i_VALID = '1') then
+        if (i_VALID = '1') then
           w_NEXT <= s_1;
         else
           w_NEXT <= s_0;
@@ -67,7 +61,7 @@ begin
         end if;
  
       when s_2 => 
-      if (r_i_VALID = '0') then
+      if (i_VALID = '0') then
         w_NEXT <= s_3;
         else
         w_NEXT <= s_1;
@@ -80,8 +74,7 @@ begin
     end case;
   end process;
 
-  o_TLAST  <= '0' when (r_STATE = s_0 or r_STATE = s_1 or r_STATE = s_2) else '1';
   o_TVALID <= '0' when (r_STATE = s_0) else '1';
-  o_TDATA  <= r_BUFFER2 when(r_STATE = s_2 or r_STATE = s_3) else "00000000";
+  o_TDATA  <= r_BUFFER1 when(r_STATE = s_2 or r_STATE = s_3) else "00000000";
 
 end arch_1;

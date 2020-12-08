@@ -9,7 +9,6 @@ port ( i_CLR_n  : in  std_logic;  -- clear/reset
        i_BUFFER : in  std_logic_vector(7 downto 0);  -- data input 
        o_MOSI   : out std_logic;   -- data output
 		 o_SCK    : out std_logic;   -- data output
-		 o_TLAST  : out std_logic;   -- data output
        o_SS_n   : out std_logic);  -- data output
 end IP_top;
 
@@ -22,8 +21,7 @@ architecture arch_1 of IP_top is
 		   i_VALID  : in  std_logic;  -- enable
          i_READY  : in  std_logic;  -- enable    
          i_BUFFER : in  std_logic_vector(7 downto 0);  -- data input 
-		   o_TVALID : out std_logic;  -- enable
-         o_TLAST  : out std_logic;  -- de last bit
+		   o_TVALID : out std_logic;  -- enable        
 		   o_TDATA  : out std_logic_vector(7 downto 0)); -- data output
   end component;
 
@@ -63,7 +61,6 @@ begin
 	 i_READY  => w_READY,
 	 i_BUFFER => i_BUFFER,
 	 o_TVALID => w_TVALID,
-	 o_TLAST  => o_TLAST,
 	 o_TDATA  => w_BUFFER
   );
 
