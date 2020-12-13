@@ -1,3 +1,11 @@
+------------------------------------------------
+-- Design: SPI_control
+-- Entity: 
+-- Author: Andriy, Diogo, George & Matheus
+-- Rev.  : 1.0
+-- Date  : 11/23/2020
+------------------------------------------------
+
 library ieee;
 use ieee.std_logic_1164.all;
 
@@ -6,7 +14,7 @@ port ( i_CLR_n 	  : in  std_logic;   -- selector
        i_CLK  	  : in  std_logic;   -- data input
        i_TVALID   : in  std_logic;    -- data input
        i_CNTR	  : in  std_logic_vector (3 downto 0);
-		 o_SCK     : out std_logic;   -- data output
+		o_SCK     : out std_logic;   -- data output
        o_CNTRCLR  : out std_logic;
        o_CNTRUP   : out std_logic;
        o_HLOAD    : out std_logic;   -- load hamming register
@@ -34,17 +42,17 @@ begin
     begin
       case (r_STATE) is
       	when s_0 => if (i_TVALID = '1') then
-        				w_NEXT <= s_1;
+        			  w_NEXT <= s_1;
       				else
-                        w_NEXT <= s_0;
+                      w_NEXT <= s_0;
                     end if;
                     
       	when s_1 => w_NEXT <= s_2;
 
       	when s_2 => if (i_CNTR="1011") then
-        				w_NEXT <= s_0;
+        		      w_NEXT <= s_0;
       				else
-                    	w_NEXT <= s_2;
+                      w_NEXT <= s_2;
       				end if;
 
       	when others => w_NEXT <= s_0;
@@ -52,11 +60,10 @@ begin
 	end process;
     
     -- output
-    o_CNTRCLR <= '1' when (r_state = s_1) else '0';
-    o_CNTRUP <= '1' when (r_STATE = s_2) else '0';
-    o_HLOAD <= '1' when (r_STATE = s_1) else '0';
-    o_TREADY <= '1' when (r_STATE = s_0) else '0';
-    o_SS_n <= '1' when (r_STATE = s_0) or (r_STATE = s_1) else '0';
-	 o_SCK <= not i_CLK when( r_STATE = s_2) else '1';
-    
+    o_CNTRCLR 	<= '1' when (r_state = s_1) else '0';
+    o_CNTRUP 	<= '1' when (r_STATE = s_2) else '0';
+    o_HLOAD 	<= '1' when (r_STATE = s_1) else '0';
+    o_TREADY 	<= '1' when (r_STATE = s_0) else '0';
+    o_SS_n 		<= '1' when (r_STATE = s_0) or (r_STATE = s_1) else '0';
+	o_SCK 		<= not i_CLK when( r_STATE = s_2) else '1';
 end arch_1;

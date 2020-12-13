@@ -1,3 +1,11 @@
+------------------------------------------------
+-- Design: Mux12_1bit
+-- Entity: 
+-- Author: Andriy, Diogo, George & Matheus
+-- Rev.  : 1.0
+-- Date  : 11/23/2020
+------------------------------------------------
+
 library ieee;
 use ieee.std_logic_1164.all;
 
